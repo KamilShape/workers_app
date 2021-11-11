@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr scope="row"  v-for='(worker,nodeId) in workers' :key='worker.name'>
-        <th>{{nodeId}}</th>
+        <th>{{}}</th>
         <th>{{worker.name}}</th>
         <td>{{worker.lastName}}</td>
         <td>{{worker.position}}</td>

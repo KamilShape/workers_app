@@ -51,6 +51,7 @@ export default {
         this.$emit('changeVisibility')
     },
     changeData(){
+
      let data = {
         name: this.changedName,
         lastName: this.changedLastName,
