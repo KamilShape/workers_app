@@ -14,24 +14,27 @@
       <input v-model='position' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
       <div class="input-group input-group-sm mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-sm">Salary</span>
-      <input v-model='salary' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Salary [PLN]</span>
+      <input v-model='salary' type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
       <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Date of Employee</span>
       <input v-model='date' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
     <button @click='showAlert()' type="button" class="btn btn-primary">Add worker</button>
-    <div class="warning" v-if='alertVisible'>
-      <h1>{{message}}</h1>
-      <div class='buttons' v-if='buttonsVisible'>
-        <button type="button" class="btn btn-success" @click='addWorker'>Yes</button>
-        <button type="button" class="btn btn-danger" @click='backToAdding'>No</button>
+    <transition name="bounce">
+        <div class="warning" v-if='alertVisible'>
+          <h1>{{message}}</h1>
+          <div class='buttons' v-if='buttonsVisible'>
+          <button type="button" class="btn btn-success" @click='addWorker'>Yes</button>
+          <button type="button" class="btn btn-danger" @click='backToAdding'>No</button>
       </div>
-       <div class='backButton' v-if='!buttonsVisible'>
+        <div class='backButton' v-if='!buttonsVisible'>
         <button type="button" class="btn btn-danger" @click='backToAdding'>Back</button>
       </div>
     </div>
+    </transition>
+  
   </div>
 </template>
 
@@ -53,7 +56,6 @@ export default {
     }
   },
   components:{
-    // Warning
     
   },
   methods:{
@@ -88,6 +90,11 @@ export default {
               }
           }
           this.backToAdding()
+          this.name = ''
+          this.lastName = ''
+          this.position = ''
+          this.salary = ''
+          this.date = ''   
     },
     }
   }

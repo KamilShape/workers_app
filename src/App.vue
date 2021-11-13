@@ -3,7 +3,7 @@
     <router-link to="/">Add Worker</router-link> |
     <router-link to="/workerslist">Workers List</router-link>
   </div>
-  <router-view />
+      <router-view />
 </template>
 
 <style lang="scss">

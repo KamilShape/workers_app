@@ -23,22 +23,33 @@
         <td>{{worker.salary}}</td>
         <td>{{worker.date}}</td>
         <td><button  @click='showTable(true, worker.name, worker.lastName, worker.position, worker.salary, worker.date, nodeId)' type="button" class="btn btn-success">Edit</button></td>
-        <td><button @click='remove(nodeId)' type="button" class="btn btn-danger">Delete</button></td>
+        <td><button @click='showAlert(nodeId)' type="button" class="btn btn-danger">Delete</button></td>
         </tr>
       </tbody>
     </table>
-  </div>
-  <ChangeTable 
-  @changeVisibility='showTable(false)' 
-  @changeData = 'changeData($event)'
-  :name='name'
-  :lastName='lastName'
-  :position='position'
-  :salary='salary'
-  :date='date'
-  :nodeId='workerId'
-  v-if='visible'
-  />
+    </div>
+    <transition name="bounce">
+      <ChangeTable 
+      @changeVisibility='showTable(false)' 
+      @changeData = 'changeData($event)'
+      :name='name'
+      :lastName='lastName'
+      :position='position'
+      :salary='salary'
+      :date='date'
+      :nodeId='workerId'
+      v-if='visible'
+      />
+    </transition>
+    <transition name="bounce">
+      <div class="warning" v-if='alertVisible'>
+          <h1>Are you sure?</h1>
+          <div class='buttons'>
+          <button type="button" class="btn btn-success" @click='remove(workerId)'>Yes</button>
+          <button type="button" class="btn btn-danger" @click='this.alertVisible = false'>No</button>
+      </div>
+    </div>
+    </transition>
 </template>
 <script>
 import ChangeTable from '@/components/ChangeTable.vue'
@@ -53,6 +64,7 @@ export default {
       salary: '',
       date: '',
       workerId: '',
+      alertVisible: false
     }
   },
   components:{
@@ -78,6 +90,7 @@ export default {
         this.workerId = nodeId
       },
      async remove(id) {
+      this.alertVisible = false
       try {
         await this.axios.delete(`https://workers-39c16-default-rtdb.firebaseio.com/players/${id}.json`);
         delete this.workers[id]
@@ -94,10 +107,12 @@ export default {
         catch{
           console.log('Error')
         }
-        
+      },
+      showAlert(nodeId){
+      this.workerId = nodeId
+      this.alertVisible = true
       }
   }
-   
 }
 </script>
 <style lang="css">

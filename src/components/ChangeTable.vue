@@ -73,5 +73,6 @@ export default {
     border: 1px solid black;
     padding: 30px;
     border-radius: 20%;
+    background-color: white;
   }
 </style>
