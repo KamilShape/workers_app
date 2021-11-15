@@ -43,12 +43,12 @@
     </transition>
     <transition name="bounce">
       <div class="warning" v-if='alertVisible'>
-          <h1>Are you sure?</h1>
-          <div class='buttons'>
+        <h1>Are you sure?</h1>
+        <div class='buttons'>
           <button type="button" class="btn btn-success" @click='remove(workerId)'>Yes</button>
           <button type="button" class="btn btn-danger" @click='this.alertVisible = false'>No</button>
+        </div>
       </div>
-    </div>
     </transition>
 </template>
 <script>
