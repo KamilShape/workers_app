@@ -14,7 +14,7 @@
       <input v-model='position' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
     <div class="input-group input-group-sm mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-sm">Salary [PLN]</span>
+      <span class="input-group-text" id="inputGroup-sizing-sm">Salary [PLN/gr.]</span>
       <input v-model='salary' type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
     <div class="input-group input-group-sm mb-3">
@@ -89,7 +89,6 @@ export default {
     backToAdding(){
       this.alertVisible = false
     },
-   
     changeMonth(event) {
       this.month =
         event.target.options[event.target.options.selectedIndex].text;
@@ -145,7 +144,6 @@ export default {
   }
   .buttons{
     display: flex;
-    
     padding: 10px;
     justify-content: space-evenly;
   }

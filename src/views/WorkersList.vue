@@ -4,7 +4,6 @@
     <table class="table table-success table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Position</th>
@@ -16,11 +15,10 @@
       </thead>
       <tbody>
         <tr scope="row"  v-for='(worker,nodeId) in workers' :key='worker.name'>
-        <th>{{}}</th>
         <th>{{worker.name}}</th>
         <td>{{worker.lastName}}</td>
         <td>{{worker.position}}</td>
-        <td>{{worker.salary}}</td>
+        <td>{{worker.salary}} PLN/gr.</td>
         <td>{{worker.date}}</td>
         <td><button  @click='showTable(true, worker.name, worker.lastName, worker.position, worker.salary, worker.date, nodeId)' type="button" class="btn btn-success">Edit</button></td>
         <td><button @click='showAlert(nodeId)' type="button" class="btn btn-danger">Delete</button></td>

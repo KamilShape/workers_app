@@ -5,11 +5,11 @@
       <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
       <input v-model='changedName' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
-      <div class="input-group input-group-sm mb-3">
+    <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
       <input v-model='changedLastName' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
-      <div class="input-group input-group-sm mb-3">
+    <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Position</span>
       <input v-model='changedPosition' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
@@ -17,7 +17,7 @@
       <span class="input-group-text" id="inputGroup-sizing-sm">Salary</span>
       <input v-model='changedSalary' min=0 type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
-      <div class="input-group input-group-sm mb-3">
+    <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Date of Employee</span>
       <input v-model='changedDate' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
@@ -46,6 +46,7 @@ export default {
       changedPosition: this.position,
       changedSalary: this.salary,
       changedDate: this.date,
+     
     }
   },
   name: "HelloWorld",
@@ -61,6 +62,17 @@ export default {
     changeVisibility(){
         this.$emit('changeVisibility')
     },
+    changeMonth(event) {
+      this.month =
+        event.target.options[event.target.options.selectedIndex].text;
+      if(this.month == 'January' || this.month == 'March' || this.month == 'May' || this.month == 'July' || this.month == 'August' || this.month == 'October' || this.month == 'December'){
+        this.numberOfDays = 31
+      } else if(this.month == 'February' ){
+        this.numberOfDays = 28
+      } else {
+        this.numberOfDays = 30
+      }
+    },
     changeData(){
       if(this.changedName == '' || this.changedLastName == '' || this.changedPosition == '' || this.changedSalary == '' || this.changedDate == '' ){
           this.alertVisible = 'true'
@@ -72,10 +84,10 @@ export default {
           position: this.changedPosition,
           salary: this.changedSalary,
           date: this.changedDate
-      }
-      this.$emit('changeData', data)
-      }
-    }
+          }
+          this.$emit('changeData', data)
+        }
+    },
   }
 };
 
